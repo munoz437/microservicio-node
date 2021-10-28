@@ -33,11 +33,11 @@ const Eureka = require('eureka-js-client').Eureka;
 
 const client = new Eureka({
   instance: {
-    app: 'nodejs01',
-    hostName: '192.168.1.15',
+    app: 'nodejs1',
+    hostName: 'localhost',
     ipAddr: '192.168.1.15',
-    statusPageUr: 'http://localhost:3000/',
-    instanceId: 'nodejs1',
+    statusPageUrl: 'http://localhost:3000/',
+    instanceId: 'nodejs01',
     status: 'UP',
     port: {
       '$': 3000,
@@ -45,8 +45,8 @@ const client = new Eureka({
     },
     vipAddress: 'nodejs1',
     dataCenterInfo: {
-      '@class ': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
-      name: 'MyOwn'
+      '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
+      name: 'MyOwn',
     },
   },
   eureka: {
@@ -56,6 +56,10 @@ const client = new Eureka({
   },
 });
 
+client.logger.level('debug');
+client.start(function (error) {
+  console.log(error || 'complete');
+});
 /**
  * Normalize a port into a number, string, or false.
  */

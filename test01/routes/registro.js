@@ -1,32 +1,56 @@
 var express= require('express');
-var axios= require('axios');
-var xml2js= require('xml2js');
-var router=express.Router();
+// var axios= require('axios');
+// var xml2js= require('xml2js');
+var router = express.Router();
 
-//const oracledb= require('oracledb');
+// var mysql = require('mysql');
 
-async function getDataFromDatabaseMysql(){
-    return new Promise((resolve, reject)=>{
-        var mysql= require('mysql');
-        var connection= mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'baseDatos'
-        });
-        connection.connect();
-        connection.query('SELECT * FROM proveedores', function(error, result, fields){
-            if(error) throw error;
-            resolve(result);
-        });
-        connection.end();
-    });
-}
+// var connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '',
+//     database: 'articlesdb'
+// });
 
 
-router.get('/consulta',keycloak.protect(), async function(req, res){
-    const resultFromDatabase= await getDataFromDatabaseMysql();
-    res.send({result:resultFromDatabase});
+// connection.connect(function (error) {
+//     if (error) {
+//         throw error;
+//     } else {
+//         console.log('Conexion exitosa: ');
+//     }
+// });
+
+// async function getDataFromDatabaseMysql(){
+//     return new Promise((resolve, reject)=>{
+//         var mysql= require('mysql');
+//         var connection= mysql.createConnection({
+//             host: 'localhost',
+//             user: 'root',
+//             password: '',
+//             database: 'baseDatos'
+//         });
+//         connection.connect();
+//         connection.query('SELECT * FROM proveedores', function(error, result, fields){
+//             if(error) throw error;
+//             resolve(result);
+//         });
+//         connection.end();
+//     });
+// }
+
+//,keycloak.protect()
+router.get('/consulta', async function(req, res,next){
+    // const resultFromDatabase= await getDataFromDatabaseMysql();
+    // res.send({result:resultFromDatabase});
+    // connection.query('SELECT * FROM articles', (error, filas) => {
+    //     if (error) {
+    //         throw error;
+    //     } else {
+    //         res.send(filas);
+    //     }
+    // })
+    res.send('Inicio ');
 });
 
-module.exports= router;
+module.exports = router;
